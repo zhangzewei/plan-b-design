@@ -6,3 +6,22 @@
 
 1. 项目启动 `npm start`;
 2. 启动 story book `npm run storybook`;
+
+## Todo List
+
+- [ ] Color -- zzw
+- [ ] Typography -- zy
+- [ ] Card -- zy
+- [ ] Button -- zy
+- [ ] Dropdown -- zzw
+- [ ] Tooltip -- zy
+- [ ] message -- zzw
+- [ ] notification -- zzw
+- [ ] modal(多个弹窗出现) -- zy
+- [ ] badge -- zzw
+- [ ] Input
+- [ ] Search
+- [ ] Textarea
+- [ ] Radio
+- [ ] checkbox
+- [ ] Form
