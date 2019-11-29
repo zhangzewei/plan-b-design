@@ -19,7 +19,9 @@ const App = () => {
         >
           Learn React
         </a>
-        <Typography variant="head">Typography</Typography>
+        <Typography variant="head" underline>
+          Typography
+        </Typography>
       </header>
     </div>
   );
