@@ -1,0 +1,29 @@
+.pb-typography-head {
+  font-size: 24px;
+  line-height: 32px;
+  margin: 0;
+}
+
+.pb-typography-title {
+  font-size: 18px;
+  line-height: 28px;
+  margin: 0;
+}
+
+.pb-typography-subtitle {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.pb-typography-body {
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0;
+}
+
+.pb-typography-caption {
+  font-size: 12px;
+  line-height: 20px;
+  margin: 0;
+}
