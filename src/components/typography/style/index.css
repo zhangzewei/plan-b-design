@@ -27,3 +27,19 @@
   line-height: 20px;
   margin: 0;
 }
+
+.pb-typography-primary {
+  color: #333;
+}
+
+.pb-typography-secondary {
+  color: #8ea0b8;
+}
+
+.pb-typography-third {
+  color: #999;
+}
+
+.pb-typography-disabled {
+  color: #ced2da;
+}

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classNames from 'classnames';
 import './style/index.css';
 
 const headlineMapping = {
@@ -11,6 +12,7 @@ const headlineMapping = {
 
 interface TypographyProps {
     component?: string,
+    color?: 'primary' | 'secondary' | 'third' | 'disabled';
     paragraph?: boolean,
     variant?: 'head' | 'title' | 'subtitle' | 'body' | 'caption',
     customizePrefixCls?: string,
@@ -50,14 +52,25 @@ const Typography: React.SFC<TypographyProps> = props => {
         variant = 'body',
         customizePrefixCls,
         children,
+        color,
         ...other
     } = props;
 
     const textNode = wrapperDecorations(props, children);
-    const prefixCls = getPrefixCls(`typography-${variant}`, customizePrefixCls);
+    const prefixCls = getPrefixCls(`typography`, customizePrefixCls);
     const Component = (component || (paragraph ? 'p' : headlineMapping[variant]) || 'span') as any;
 
-    return <Component className={prefixCls} {...other} > {textNode}</Component>;
+    return (
+        <Component
+            className={classNames('', {
+                [`${prefixCls}-${variant}`]: variant,
+                [`${prefixCls}-${color}`]: color
+            })}
+            {...other}
+        >
+            {textNode}
+        </Component>
+    );
 }
 
 export default Typography;

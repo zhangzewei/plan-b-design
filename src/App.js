@@ -19,7 +19,7 @@ const App = () => {
         >
           Learn React
         </a>
-        <Typography variant="head" underline>
+        <Typography variant="head" color="primary" underline>
           Typography
         </Typography>
       </header>
