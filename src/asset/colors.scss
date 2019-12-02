@@ -1,0 +1,76 @@
+$prefix: 'pb';
+// 品牌色
+$brand-primary: #0083FF;
+$brand-primary-hover-link: #0069CC;
+$brand-primary-light: #D9EDFF;
+$brand-primary-disabled: #80C1FF;
+// 功能色
+$function-success: #14C091;
+$function-warning: #FF7B2E;
+$function-error: #FF4E4E;
+$function-success-light: #F0FFF3;
+$function-warning-light: #FFF8E6;
+$function-error-light: #FCEDED;
+// 辅助色
+$assit-red: #E45050;
+$assit-yellow: #FFAD00;
+// 中性色
+$common-primary: #333333;
+$common-secondary: #8EA0B8;
+$common-third: #999999;
+$common-hover-link: #0083FF;
+$common-secondary-hover: #666666;
+$common-divider: #EBEDF2;
+$common-border: #E5E5E5;
+$common-bg-hover: #F7F7F7;
+$common-disabled: #CED2DA;
+$common-bg-primary: #FFFFFF;
+$common-bg-secondary: #F9FBFF;
+
+$colors: (
+  brand-primary: $brand-primary,
+  brand-primary-hover-link: $brand-primary-hover-link,
+  brand-primary-light: $brand-primary-light,
+  brand-primary-disabled: $brand-primary-disabled,
+  // 功能色
+  function-success: $function-success,
+  function-warning: $function-warning,
+  function-error: $function-error,
+  function-success-light: $function-success-light,
+  function-warning-light: $function-warning-light,
+  function-error-light: $function-error-light,
+  // 辅助色
+  assit-red: $assit-red,
+  assit-yellow: $assit-yellow,
+  // 中性色
+  common-primary: $common-primary,
+  common-secondary: $common-secondary,
+  common-third: $common-third,
+  common-hover-link: $common-hover-link,
+  common-secondary-hover: $common-secondary-hover,
+  common-divider: $common-divider,
+  common-border: $common-border,
+  common-bg-hover: $common-bg-hover,
+  common-disabled: $common-disabled,
+  common-bg-primary: $common-bg-primary,
+  common-bg-secondary: $common-bg-secondary,
+);
+
+@mixin create-color {
+  @each $color, $val in $colors {
+    .#{$prefix}-color-#{$color} {
+      color: $val;
+    }
+  }
+}
+
+@mixin create-bgcolor {
+  @each $color, $val in $colors {
+    .#{$prefix}-bg-#{$color} {
+      background-color: $val;
+    }
+  }
+}
+
+@include create-color;
+@include create-bgcolor;
