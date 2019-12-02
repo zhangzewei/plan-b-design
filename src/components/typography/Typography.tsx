@@ -11,6 +11,8 @@ const headlineMapping = {
 };
 
 interface TypographyProps {
+    className?: string;
+    style?: React.CSSProperties;
     component?: string,
     color?: 'primary' | 'secondary' | 'third' | 'disabled';
     paragraph?: boolean,
@@ -47,6 +49,7 @@ const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
 
 const Typography: React.SFC<TypographyProps> = props => {
     const {
+        className,
         component,
         paragraph,
         variant = 'body',
@@ -62,7 +65,7 @@ const Typography: React.SFC<TypographyProps> = props => {
 
     return (
         <Component
-            className={classNames('', {
+            className={classNames(className, {
                 [`${prefixCls}-${variant}`]: variant,
                 [`${prefixCls}-${color}`]: color
             })}
