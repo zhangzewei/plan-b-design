@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
+import Typography from "./components/typography/Typography";
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
         >
           Learn React
         </a>
+        <Typography variant="head" color="primary" underline>
+          Typography
+        </Typography>
       </header>
     </div>
   );
