@@ -57,7 +57,7 @@ const Typography: React.SFC<TypographyProps> = props => {
 
     const textNode = wrapperDecorations(props, children);
     const prefixCls = getPrefixCls(`typography`, customizePrefixCls);
-    const Component = (component || (paragraph ? 'p' : HEADLINE_MAPPING[variant]) || 'span') as any;
+    const Component = (component || (paragraph ? 'p' : HEADLINE_MAPPING[variant]) || 'span');
 
     return React.createElement(Component, {
         className: classNames(className, {
