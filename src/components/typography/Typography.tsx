@@ -1,8 +1,8 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import './style/index.css';
+import './style/index.scss';
 
-const headlineMapping = {
+const HEADLINE_MAPPING = {
     head: 'h5',
     title: 'h6',
     subtitle: 'h6',
@@ -41,11 +41,7 @@ function wrapperDecorations({ delete: del, strong, underline }: TypographyProps,
     return currentContent;
 }
 
-const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
-    if (customizePrefixCls) return customizePrefixCls;
-
-    return `pb-${suffixCls}`;
-};
+const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => customizePrefixCls || `pb-${suffixCls}`;
 
 const Typography: React.SFC<TypographyProps> = props => {
     const {
@@ -61,19 +57,15 @@ const Typography: React.SFC<TypographyProps> = props => {
 
     const textNode = wrapperDecorations(props, children);
     const prefixCls = getPrefixCls(`typography`, customizePrefixCls);
-    const Component = (component || (paragraph ? 'p' : headlineMapping[variant]) || 'span') as any;
+    const Component = (component || (paragraph ? 'p' : HEADLINE_MAPPING[variant]) || 'span') as any;
 
-    return (
-        <Component
-            className={classNames(className, {
-                [`${prefixCls}-${variant}`]: variant,
-                [`${prefixCls}-${color}`]: color
-            })}
-            {...other}
-        >
-            {textNode}
-        </Component>
-    );
+    return React.createElement(Component, {
+        className: classNames(className, {
+            [`${prefixCls}-${variant}`]: variant,
+            [`${prefixCls}-${color}`]: color
+        }),
+        ...other
+    }, textNode);
 }
 
 export default Typography;
