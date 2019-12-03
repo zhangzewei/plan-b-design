@@ -9,8 +9,8 @@
 
 ## Todo List
 
-- [ ] Color -- zzw
-- [ ] Typography -- zy
+- [x] Color -- zzw
+- [x] Typography -- zy
 - [ ] Card -- zy
 - [ ] Button -- zy
 - [ ] Dropdown -- zzw
