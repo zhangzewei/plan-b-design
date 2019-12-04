@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../src/components/card";
-import CardHeader from "../src/components/card/cardHeader/CardHeader";
+import CardHeader from "../src/components/cardHeader/CardHeader";
 
 export default {
     title: "Card",
