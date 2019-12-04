@@ -1,14 +1,14 @@
 import * as React from 'react';
 import './style/index.scss';
 import classNames from "classnames";
-import Typography from "../../typography/Typography";
+import Typography from '../typography/Typography';
 
 interface CardHeaderProps {
-    customizePrefixCls: string;
+    customizePrefixCls?: string;
     title: React.ReactNode;
-    action: React.ReactNode;
-    avatar: React.ReactNode;
-    subheader: React.ReactNode;
+    action?: React.ReactNode;
+    avatar?: React.ReactNode;
+    subheader?: React.ReactNode;
 }
 
 const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
@@ -30,7 +30,7 @@ const CardHeader: React.SFC<CardHeaderProps> = props => {
 
     const title = titleProp ? (
         <Typography
-            variant={avatar ? 'body' : 'head'}
+            variant={avatar ? 'subtitle' : 'head'}
             className={`${prefixCls}-title`}
         >
             {titleProp}
