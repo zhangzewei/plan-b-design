@@ -1,47 +1,34 @@
 import React from "react";
 import Card from "../src/components/card";
+import CardHeader from "../src/components/card/cardHeader/CardHeader";
 
 export default {
     title: "Card",
 };
 
-export const size = () => (
-    <>
-        <Card style={{width: "300px"}} title='Card Title' extra='More'>
-            Card Content
-        </Card>
-        <br />
-        <Card style={{width: "300px"}} title='Card Title' extra='More' size='small'>
-            Card Content
-        </Card>
-    </>
+export const hasBorder = () => (
+    <Card style={{width: "300px"}}>
+        <CardHeader
+            title="Card Content"
+            action={<a href="#">More</a>}
+        ></CardHeader>
+    </Card>
 );
 
-export const noTitle = () => (
-    <>
-        <Card style={{width: "300px"}} extra='More'>
-            Card Content
-        </Card>
-    </>
-);
-
-export const noContent = () => (
-    <>
-        <Card style={{width: "300px"}} title='Card Title' extra='More'>
-        </Card>
-    </>
-);
-
-export const bordered = () => (
+export const noBorder = () => (
     <div style={{
         background: "rgb(236, 236, 236)",
         padding: "30px",
         display: "inline-block"
     }}>
         <p>在灰色背景上使用无边框的卡片。</p>
-        <Card style={{width: "300px"}} title='Card Title' extra='More' bordered={false}>
-            Card Content
+        <Card style={{width: "300px"}} bordered={false}>
+            <CardHeader
+                title="Card Content"
+                action={<a href="#">More</a>}
+            ></CardHeader>
         </Card>
     </div>
-
 );
+
+
