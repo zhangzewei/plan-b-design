@@ -1,0 +1,130 @@
+@import "../../../asset/colors";
+
+.pb-button {
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+
+  &-contained {
+    &-primary {
+      background-color: $brand-primary;
+      color: #FFF;
+    }
+
+    &-primary:hover:enabled {
+      background-color: $brand-primary-hover-link;
+      color: #FFF;
+    }
+
+    &-primary:disabled {
+      background-color: $brand-primary-disabled;
+      color: #FFF;
+      cursor: default;
+    }
+
+    &-secondary {
+      background-color: $brand-primary-light;
+      color: $brand-primary;
+    }
+
+    &-secondary:hover:enabled {
+      background-color: #bfe1ff;
+      color: $brand-primary;
+    }
+
+    &-secondary:disabled {
+      background-color: $common-disabled;
+      color: #FFF;
+      cursor: default;
+    }
+
+    &-danger {
+      background-color: $function-error;
+      color: #FFF;
+    }
+
+    &-danger:hover:enabled {
+      background-color: #d94343;
+    }
+
+    &-danger:disabled {
+      background-color: #ff8080;
+      cursor: default;
+    }
+  }
+
+  &-outlined {
+    background-color: transparent;
+
+    &:disabled {
+      background-color: $common-bg-hover;
+      border: 1px solid $common-border;
+      color: $common-third;
+      cursor: not-allowed;
+    }
+
+    &-primary {
+      color: $brand-primary;
+      border: 1px solid $brand-primary;
+    }
+
+    &-primary:hover:enabled {
+      background-color: $brand-primary-light;
+    }
+
+    &-secondary {
+      color: $brand-primary-light;
+      border: 1px solid $brand-primary-light;
+    }
+
+    &-secondary:hover:enabled {
+      background-color: rgba(217, 237, 255, 0.08);
+    }
+
+    &-danger {
+      color: $function-error;
+      border: 1px solid $function-error;
+    }
+
+    &-danger:hover:enabled {
+      background-color: #DC004E08;
+    }
+  }
+
+  &-text {
+    background-color: transparent;
+
+    &:disabled {
+      color: rgba(0, 0, 0, 0.26);
+      cursor: not-allowed;
+    }
+
+    &-primary {
+      color: $brand-primary;
+    }
+
+    &-primary:hover:enabled {
+      background-color: $brand-primary-light;
+    }
+
+    &-secondary {
+      color: $brand-primary-light;
+    }
+
+    &-secondary:hover:enabled {
+      background-color: rgba(217, 237, 255, 0.08);
+    }
+
+    &-danger {
+      color: $function-error;
+    }
+
+    &-danger:hover:enabled {
+      background-color: #DC004E08;
+    }
+  }
+}
