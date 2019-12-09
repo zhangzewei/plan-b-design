@@ -1,0 +1,10 @@
+@import '../../../asset';
+.pb-dropdown-trigger {
+  cursor: pointer;
+}
+
+.pb-trigger-popup {
+  padding: 16px;
+  border-radius: $GLOBAL_BORDER_RADIUS;
+  background-color: $common-bg-primary;
+}

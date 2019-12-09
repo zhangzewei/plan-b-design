@@ -2,8 +2,10 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
 import Typography from "./components/typography/Typography";
+import Dropdown from "./components/dropdown";
 
 const App = () => {
+  const Dom = <div>11122223333</div>;
   return (
     <div className="App">
       <header className="App-header">
@@ -22,6 +24,10 @@ const App = () => {
         <Typography variant="head" color="primary" underline>
           Typography
         </Typography>
+
+        <Dropdown overlay={Dom} trigger={["click"]}>
+          <div>aaaa</div>
+        </Dropdown>
       </header>
     </div>
   );
