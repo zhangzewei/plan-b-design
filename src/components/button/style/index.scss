@@ -22,6 +22,10 @@
     font-size: 14px;
   }
 
+  &-full-width {
+    width: 100%;
+  }
+
   &-contained {
     &-primary {
       background-color: $brand-primary;

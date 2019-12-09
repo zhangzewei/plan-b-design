@@ -9,7 +9,8 @@ interface CardProps {
     variant?: 'contained' | 'text' | 'outlined',
     color: 'primary' | 'secondary' | 'danger',
     size?: 'small' | 'medium' | 'large',
-    disabled?: boolean
+    disabled?: boolean,
+    fullWidth?: boolean
 }
 
 const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
@@ -24,8 +25,10 @@ const ButtonBase: React.SFC<CardProps> = props => {
         variant = 'text',
         color = 'primary',
         size = 'medium',
+        fullWidth = false,
         ...other
-    } = props;
+    }
+        = props;
 
     const prefixCls = getPrefixCls(`button`, customizePrefixCls);
 
@@ -34,6 +37,7 @@ const ButtonBase: React.SFC<CardProps> = props => {
             [`${prefixCls}-${size}`]: size,
             [`${prefixCls}-${variant}`]: variant,
             [`${prefixCls}-${variant}-${color}`]: color,
+            [`${prefixCls}-full-width`]: fullWidth,
         })}
                 {...other}
         />
