@@ -8,37 +8,37 @@ export default {
 
 export const Buttons = () => (
     <>
-        <div style={{width: '300px'}}>
+        <div style={{width: '340px'}}>
             <Typography variant='title'>Contained Buttons（实心按钮）</Typography>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'>primary</ButtonBase>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='secondary'>secondary</ButtonBase>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='danger'>danger</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'>PRIMARY</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='secondary'>SECONDARY</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='danger'>DANGER</ButtonBase>
             <br />
             <Typography variant='subtitle'>disabled</Typography>
             <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'
-                        disabled>primary</ButtonBase>
+                        disabled>PRIMARY</ButtonBase>
             <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='secondary'
-                        disabled>secondary</ButtonBase>
+                        disabled>SECONDARY</ButtonBase>
             <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='danger'
-                        disabled>danger</ButtonBase>
+                        disabled>DANGER</ButtonBase>
             <Typography variant='title'>Outlined Buttons（描边按钮）</Typography>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='primary'>primary</ButtonBase>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='secondary'>secondary</ButtonBase>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='danger'>danger</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='primary'>PRIMARY</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='secondary'>SECONDARY</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='danger'>DANGER</ButtonBase>
             <Typography variant='subtitle'>disabled</Typography>
             <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='primary'
-                        disabled>primary</ButtonBase>
+                        disabled>PRIMARY</ButtonBase>
             <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='secondary'
-                        disabled>secondary</ButtonBase>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='danger' disabled>danger</ButtonBase>
+                        disabled>SECONDARY</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='danger' disabled>DANGER</ButtonBase>
             <Typography variant='title'>Text Buttons（文本按钮）</Typography>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='primary'>primary</ButtonBase>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='secondary'>secondary</ButtonBase>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='danger'>danger</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='primary'>PRIMARY</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='secondary'>SECONDARY</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='danger'>DANGER</ButtonBase>
             <Typography variant='subtitle'>disabled</Typography>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='primary' disabled>primary</ButtonBase>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='secondary' disabled>secondary</ButtonBase>
-            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='danger' disabled>danger</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='primary' disabled>PRIMARY</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='secondary' disabled>SECONDARY</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} color='danger' disabled>DANGER</ButtonBase>
             <Typography variant='title'>Size(按钮尺寸)</Typography>
             <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'
                         size="small">SMALL</ButtonBase>
@@ -48,6 +48,8 @@ export const Buttons = () => (
             <Typography variant='title'>fullWidth</Typography>
             <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'
                         fullWidth>fullWidth</ButtonBase>
+            <Typography variant='title'>Link</Typography>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary' href="#">LINK</ButtonBase>
         </div>
     </>
 );

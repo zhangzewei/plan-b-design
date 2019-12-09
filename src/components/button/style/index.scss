@@ -6,9 +6,14 @@
   font-size: 14px;
   min-width: 64px;
   border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   outline: none;
   cursor: pointer;
+  user-select: none;
   border: none;
+  transition: all .3s cubic-bezier(.645, .045, .355, 1);
 
   &-large {
     height: 40px;
