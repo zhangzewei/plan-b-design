@@ -35,6 +35,10 @@ export const Buttons = () => (
             <ButtonBase style={{margin: '8px 8px 8px 0'}} color='primary' disabled>primary</ButtonBase>
             <ButtonBase style={{margin: '8px 8px 8px 0'}} color='secondary' disabled>secondary</ButtonBase>
             <ButtonBase style={{margin: '8px 8px 8px 0'}} color='danger' disabled>danger</ButtonBase>
+            <Typography variant='title'>Size(按钮尺寸)</Typography>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary' size="small">SMALL</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'>MEDIUM</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary' size="large">LARGE</ButtonBase>
         </div>
     </>
 );
