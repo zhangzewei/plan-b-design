@@ -1,0 +1,59 @@
+@import "../../style/themes/index";
+
+@mixin btn() {
+  min-width: 64px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  white-space: nowrap;
+  transition: all .3s $ease-in-out;
+  touch-action: manipulation;
+  @include button-size(32px, 0 15px, 14px);
+
+  &-large {
+    @include button-size(40px, 0 15px, 16px)
+  }
+  &-small {
+    @include button-size(24px, 0 7px, 14px)
+  }
+}
+
+@mixin button-size($height, $padding, $font-size, $border-radius: 2px) {
+  height: $height;
+  padding: $padding;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
+
+@mixin button-circle-size($width) {
+  width: $width;
+  height: $width;
+  min-width: $width;
+  border-radius: 100%;
+}
+
+@mixin button-color($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border: 1px solid $border;
+}
+
+@mixin button-disabled($color, $background, $border) {
+  &-disabled,
+  &.disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      @include button-color($color, $background, $border);
+      cursor: not-allowed;
+    }
+  }
+}

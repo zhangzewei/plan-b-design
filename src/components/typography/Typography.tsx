@@ -23,9 +23,10 @@ interface TypographyProps {
     underline?: boolean;
     strong?: boolean;
     delete?: boolean;
+    code?: boolean;
 }
 
-function wrapperDecorations({ delete: del, strong, underline }: TypographyProps, content: React.ReactNode) {
+function wrapperDecorations({ delete: del, strong, underline, code }: TypographyProps, content: React.ReactNode) {
     let currentContent = content;
 
     function wrap(needed: boolean | undefined, tag: string) {
@@ -37,6 +38,7 @@ function wrapperDecorations({ delete: del, strong, underline }: TypographyProps,
     wrap(underline, 'u');
     wrap(strong, 'strong');
     wrap(del, 'del');
+    wrap(code, 'code');
 
     return currentContent;
 }

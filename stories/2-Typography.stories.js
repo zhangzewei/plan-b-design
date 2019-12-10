@@ -46,13 +46,16 @@ export const color = () => (
 export const decorations = () => (
     <>
         <Typography variant="subtitle" underline>
-            Typography
+            underline
         </Typography>
         <Typography variant="subtitle" strong>
-            Typography
+            strong
         </Typography>
         <Typography variant="subtitle" delete>
-            Typography
+            delete
+        </Typography>
+        <Typography variant="subtitle" code>
+            code
         </Typography>
     </>
 );

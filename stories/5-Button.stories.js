@@ -50,6 +50,23 @@ export const Buttons = () => (
                         fullWidth>fullWidth</ButtonBase>
             <Typography variant='title'>Link</Typography>
             <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary' href="#">LINK</ButtonBase>
+            <Typography variant='title'>circle</Typography>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'
+                        shape='circle'
+                        size='small'>R</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'
+                        shape='circle'>R</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'
+                        shape='circle' size="large">R</ButtonBase>
+            <Typography variant='title'>round</Typography>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'
+                        shape='round'
+                        size='small'>ROUND</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'
+                        shape='round'>ROUND</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'
+                        shape='round' size="large">ROUND</ButtonBase>
+
         </div>
     </>
 );

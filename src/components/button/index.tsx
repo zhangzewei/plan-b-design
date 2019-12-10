@@ -13,7 +13,9 @@ interface CardProps {
     disabled?: boolean,
     fullWidth?: boolean,
     href?: string;
+    target?: string;
     component?: string;
+    shape?: 'circle' | 'round'
 }
 
 const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
@@ -28,7 +30,8 @@ const ButtonBase: React.SFC<CardProps> = props => {
         className,
         variant = 'text',
         color = 'primary',
-        size = 'medium',
+        size,
+        shape,
         fullWidth = false,
         href,
         component,
@@ -43,6 +46,7 @@ const ButtonBase: React.SFC<CardProps> = props => {
         className: classNames(className, {
             [prefixCls]: true,
             [`${prefixCls}-${size}`]: size,
+            [`${prefixCls}-${shape}`]: shape,
             [`${prefixCls}-${variant}`]: variant,
             [`${prefixCls}-${variant}-${color}`]: color,
             [`${prefixCls}-full-width`]: fullWidth,
