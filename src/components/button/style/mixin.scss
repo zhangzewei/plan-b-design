@@ -1,5 +1,28 @@
 @import "../../style/themes/index";
 
+$btn-height-base: 32px;
+$btn-height-lg: 40px;
+$btn-height-sm: 24px;
+
+$btn-circle-size: $btn-height-base;
+$btn-circle-size-lg: $btn-height-lg;
+$btn-circle-size-sm: $btn-height-sm;
+
+$btn-square-size: $btn-height-base;
+$btn-square-size-lg: $btn-height-lg;
+$btn-square-size-sm: $btn-height-sm;
+
+$btn-padding-base: 0 $padding-md - 1px;
+$btn-padding-lg: $btn-padding-base;
+$btn-padding-sm: 0 $padding-xs - 1px;
+
+$btn-font-size-lg: $font-size-lg;
+$btn-font-size-sm: $font-size-base;
+
+$btn-secondary-hover-color: #bfe1ff;
+$btn-danger-bg-color: #ff8080;
+$btn-danger-bg-hover-color: #d94343;
+
 @mixin btn() {
   min-width: 64px;
   position: relative;
@@ -13,13 +36,13 @@
   white-space: nowrap;
   transition: all .3s $ease-in-out;
   touch-action: manipulation;
-  @include button-size(32px, 0 15px, 14px);
+  @include button-size($btn-height-base, $btn-padding-base, $font-size-base);
 
   &-large {
-    @include button-size(40px, 0 15px, 16px)
+    @include button-size($btn-height-lg, $btn-padding-lg, $font-size-lg)
   }
   &-small {
-    @include button-size(24px, 0 7px, 14px)
+    @include button-size($btn-height-sm, $btn-padding-sm, $font-size-base)
   }
 }
 
@@ -30,10 +53,10 @@
   border-radius: $border-radius;
 }
 
-@mixin button-circle-size($width) {
-  width: $width;
-  height: $width;
-  min-width: $width;
+@mixin button-circle-size($size) {
+  width: $size;
+  height: $size;
+  min-width: $size;
   border-radius: 100%;
 }
 

@@ -4,24 +4,16 @@
 .pb-button {
   @include btn();
 
-  &-small {
-    @include button-size(24px, 0 7px, 14px, 2px)
-  }
-
-  &-large {
-    @include button-size(40px, 0 15px, 16px, 2px)
-  }
-
   &-circle {
-    @include button-circle-size(32px);
+    @include button-circle-size($btn-circle-size);
   }
 
   &-large.pb-button-circle {
-    @include button-circle-size(40px);
+    @include button-circle-size($btn-circle-size-lg);
   }
 
   &-small.pb-button-circle {
-    @include button-circle-size(24px);
+    @include button-circle-size($btn-circle-size-sm);
   }
 
   &-round {
@@ -34,30 +26,30 @@
 
   &-contained {
     &-primary {
-      @include button-color(#FFF, $brand-primary, $brand-primary);
-      @include button-disabled(#FFF, $brand-primary-disabled, $brand-primary-disabled);
+      @include button-color($common-bg-primary, $brand-primary, $brand-primary);
+      @include button-disabled($common-bg-primary, $brand-primary-disabled, $brand-primary-disabled);
     }
 
     &-primary:not([disabled]):hover {
-      @include button-color(#FFF, $brand-primary-hover-link, $brand-primary-hover-link);
+      @include button-color($common-bg-primary, $brand-primary-hover-link, $brand-primary-hover-link);
     }
 
     &-secondary {
       @include button-color($brand-primary, $brand-primary-light, $brand-primary-light);
-      @include button-disabled(#FFF, $common-disabled, $common-disabled);
+      @include button-disabled($common-bg-primary, $common-disabled, $common-disabled);
     }
 
     &-secondary:not([disabled]):hover {
-      @include button-color($brand-primary, #bfe1ff, #bfe1ff);
+      @include button-color($brand-primary, $btn-secondary-hover-color, $btn-secondary-hover-color);
     }
 
     &-danger {
-      @include button-color(#FFF, $function-error, $function-error);
-      @include button-disabled(#FFF, #ff8080, #ff8080);
+      @include button-color($common-bg-primary, $function-error, $function-error);
+      @include button-disabled($common-bg-primary, $btn-danger-bg-color, $btn-danger-bg-color);
     }
 
     &-danger:not([disabled]):hover {
-      @include button-disabled(#FFF, #d94343, #d94343);
+      @include button-color($common-bg-primary, $btn-danger-bg-hover-color, $btn-danger-bg-hover-color);
     }
   }
 

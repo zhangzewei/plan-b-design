@@ -1,1 +1,11 @@
+$font-size-base: 14px;
+$font-size-lg: $font-size-base + 2px;
+$font-size-sm: 12px;
+
+// padding
+$padding-lg: 24px; // containers
+$padding-md: 16px; // small containers and buttons
+$padding-sm: 12px; // Form controls and items
+$padding-xs: 8px; // small items
+
 $ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1)
