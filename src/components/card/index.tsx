@@ -20,13 +20,14 @@ const Card: React.SFC<CardProps> = props => {
         customizePrefixCls,
         style,
         bordered = true,
-        children
+        children,
+        className
     } = props;
 
     const prefixCls = getPrefixCls(`card`, customizePrefixCls);
 
     return (
-        <div className={classNames(prefixCls, {
+        <div className={classNames(className, prefixCls, {
             [`${prefixCls}-bordered`]: bordered
         })}
              style={{ ...style }}
