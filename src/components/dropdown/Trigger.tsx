@@ -8,7 +8,7 @@ import classNames from 'classnames';
 export interface TriggerProps extends CommonComponentProps {
   trigger: ['click', 'hover', 'custom'];
   popup: React.ReactNode | (() => React.ReactNode);
-  visible?: boolean;
+  visiable?: boolean;
   className?: string;
   style?: React.CSSProperties,
   onClick?: Function,
@@ -49,6 +49,12 @@ class Trigger extends Component<TriggerProps, {
     this.node = React.createRef();
     this.popupRef = React.createRef();
     this.clickPopupOutSideFun = null;
+  }
+
+  componentWillReceiveProps(nextProps: TriggerProps) {
+    if (this.isCustomerToHideOrShow()) {
+      this.setState({ triggerVisible: nextProps.visiable !== undefined ? nextProps.visiable : false });
+    }
   }
 
   getPortalContainer = () => {
@@ -104,6 +110,11 @@ class Trigger extends Component<TriggerProps, {
   isMouseLeaveToHideOrShow = () => {
     const { trigger } = this.props;
     return trigger.indexOf('hover') !== -1 ;
+  }
+
+  isCustomerToHideOrShow = () => {
+    const { trigger } = this.props;
+    return trigger.indexOf('custom') !== -1 ;
   }
 
   changeVisiable = (visiable: boolean, event: React.MouseEvent) => {
