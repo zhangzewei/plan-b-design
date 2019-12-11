@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Prism from 'prismjs';
 import Dropdown from "../src/components/dropdown";
 
@@ -116,7 +116,6 @@ class HoverDemo extends React.Component {
   }
 }
 
-
 class ClickDemo extends React.Component {
   componentDidMount() {
     Prism.highlightAll();
@@ -151,7 +150,6 @@ class ClickDemo extends React.Component {
     );
   }
 }
-
 
 export const customerDemo = () => (
   <CustomerDemo />
