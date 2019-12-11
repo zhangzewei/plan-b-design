@@ -13,7 +13,7 @@
 - [x] Typography -- zy
 - [ ] Card -- zy
 - [ ] Button -- zy
-- [ ] Dropdown -- zzw
+- [x] Dropdown -- zzw
 - [ ] Tooltip -- zy
 - [ ] message -- zzw
 - [ ] notification -- zzw
