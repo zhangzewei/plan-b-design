@@ -38,7 +38,7 @@ class Trigger extends Component<TriggerProps, {
   popupContainer: HTMLElement;
   node: any;
   popupRef: any;
-  clickOutSideFun: void | null;
+  clickPopupOutSideFun: void | null;
 
   constructor(props: TriggerProps) {
     super(props);
@@ -48,7 +48,7 @@ class Trigger extends Component<TriggerProps, {
     this.popupContainer = this.creatPopupContainer();
     this.node = React.createRef();
     this.popupRef = React.createRef();
-    this.clickOutSideFun = null;
+    this.clickPopupOutSideFun = null;
   }
 
   getPortalContainer = () => {
@@ -78,9 +78,9 @@ class Trigger extends Component<TriggerProps, {
   }
 
   clearOutsideHandler() {
-    if (this.clickOutSideFun) {
-      window.document.removeEventListener('click', (this.clickOutSideFun as any));
-      this.clickOutSideFun = null;
+    if (this.clickPopupOutSideFun) {
+      window.document.removeEventListener('click', (this.clickPopupOutSideFun as any));
+      this.clickPopupOutSideFun = null;
     }
   }
 
@@ -106,14 +106,11 @@ class Trigger extends Component<TriggerProps, {
     return trigger.indexOf('hover') !== -1 ;
   }
 
-  showPopup = (e: React.MouseEvent) => {
-    if (this.state.triggerVisible) return;
-    this.setState({ triggerVisible: true });
-  }
-
-  hidePopup = (e: React.MouseEvent) => {
-    if (this.state.triggerVisible && contains(this.popupRef.current, e.target)) return;
-    this.setState({ triggerVisible: false });
+  changeVisiable = (visiable: boolean, event: React.MouseEvent) => {
+    if (this.state.triggerVisible !== visiable) {
+      this.setState({ triggerVisible: visiable });
+      this.props.onVisibleChange && this.props.onVisibleChange(visiable, event);
+    }
   }
 
   getRefPoint = () => {
@@ -127,16 +124,32 @@ class Trigger extends Component<TriggerProps, {
     }
   }
 
+  onMouseEnter = (e: React.MouseEvent) => this.changeVisiable(true, e);
+
+  onMouseLeave = (e: React.MouseEvent) => this.changeVisiable(false, e);
+
+  onTriggerClick = (e: React.MouseEvent) => {
+    if (contains(this.node.current, e.target)) {
+      this.changeVisiable(!this.state.triggerVisible, e);
+    }
+  }
+
+  onClickPopupOutSide = (e: React.MouseEvent) => {
+    if (contains(this.node.current, e.target)) return;
+    if (this.state.triggerVisible && contains(this.popupRef.current, e.target)) return;
+    this.changeVisiable(false, e);
+  }
+
   genNewChildren = (
     newChildProps: HTMLAttributes<HTMLElement> & { key: string } = { key: 'trigger' }
   ) => {
     if (this.isMouseLeaveToHideOrShow()) {
-      newChildProps.onMouseEnter = this.showPopup;
-      newChildProps.onMouseLeave = this.hidePopup;
+      newChildProps.onMouseEnter = this.onMouseEnter;
+      newChildProps.onMouseLeave = this.onMouseLeave;
     }
     if (this.isClickToHideOrShow()) {
-      newChildProps.onClick = this.showPopup;
-      this.clickOutSideFun = window.document.addEventListener('click', this.hidePopup as any);
+      newChildProps.onClick = this.onTriggerClick;
+      this.clickPopupOutSideFun = window.document.addEventListener('click', this.onClickPopupOutSide as any);
     }
   }
 
@@ -152,7 +165,7 @@ class Trigger extends Component<TriggerProps, {
 
     const trigger = React.cloneElement(children, {
       className: classNames('pb-dropdown-trigger', className),
-      ref: composeRef(this.node, (children as any).ref)
+      ref: composeRef(this.node, (children as any).ref) // compose this component ref and children refs
     });
 
     let portal: React.ReactElement | null = null;

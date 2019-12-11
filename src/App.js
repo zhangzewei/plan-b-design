@@ -25,7 +25,11 @@ const App = () => {
           Typography
         </Typography>
 
-        <Dropdown overlay={Dom} trigger={["click"]}>
+        <Dropdown
+          overlay={Dom}
+          trigger={["click"]}
+          onVisibleChange={(v, e) => console.log(v, e)}
+        >
           <div>aaaa</div>
         </Dropdown>
       </header>

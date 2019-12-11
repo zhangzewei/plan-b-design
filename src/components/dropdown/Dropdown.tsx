@@ -7,7 +7,7 @@ import './style/index.scss';
 interface DropdownProps extends CommonComponentProps {
   trigger: ['click', 'hover', 'custom'];
   overlay: React.ReactElement | HTMLElement;
-  disabled?: boolean;
+  visiable?: boolean;
   onClick?: Function;
   onVisibleChange?: Function;
 }
@@ -15,6 +15,13 @@ interface DropdownProps extends CommonComponentProps {
 class Dropdown extends Component<DropdownProps> {
   constructor(props: DropdownProps) {
     super(props);
+  }
+
+  componentWillMount() {
+    const { trigger, visiable } = this.props;
+    if (trigger.indexOf('custom') > -1 && visiable === undefined) {
+      console.error('if use custom as trigger then should use visiable too');
+    }
   }
 
   render() {
