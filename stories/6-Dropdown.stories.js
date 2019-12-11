@@ -138,7 +138,7 @@ class ClickDemo extends React.Component {
           overlay={DropdownVoerlay}
           trigger={["click"]}
         >
-          <div>hover me</div>
+          <div>click me</div>
         </Dropdown>
         <h3>Code</h3>
         <pre className="language-javascript">
