@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "../src/components/card";
-import CardContent from "../src/components/cardContent";
 import CardHeader from "../src/components/cardHeader/CardHeader";
 
 import '../src/asset/colors.css';
@@ -83,7 +82,7 @@ const renderBlock = (name, renderedDom) => (
   </div>
 )
 
-export const renderBook = () => {
+export const Colors = () => {
   const textColorCards = textColorList.map(textColor => genColorCard(textColor));
   const bgColorCards = bgColorList.map(textColor => genColorCard(textColor));
   const textColorBlock = renderBlock('TextColor', textColorCards);
