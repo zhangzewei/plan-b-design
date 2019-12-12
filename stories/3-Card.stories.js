@@ -3,6 +3,7 @@ import Card from "../src/components/card";
 import CardContent from "../src/components/cardContent";
 import CardHeader from "../src/components/cardHeader/CardHeader";
 import CardActions from "../src/components/cardActions";
+import ButtonBase from "../src/components/button";
 
 export default {
     title: "Card",
@@ -48,9 +49,8 @@ export const cardActions = () => (
         />
         <CardContent>card content</CardContent>
         <CardActions>
-            <button>button</button>
-            <button>button</button>
-            <button>button</button>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="outlined" color='primary'>cancel</ButtonBase>
+            <ButtonBase style={{margin: '8px 8px 8px 0'}} variant="contained" color='primary'>confirm</ButtonBase>
         </CardActions>
     </Card>
 );

@@ -14,10 +14,13 @@ interface TypographyProps {
     className?: string;
     style?: React.CSSProperties;
     component?: string,
-    color?: 'primary' | 'secondary' | 'third' | 'disabled';
+    color?: 'textPrimary' | 'textSecondary' | 'textThird' | 'disabled' | 'link' | 'success' | 'error' | 'warning';
     paragraph?: boolean,
     variant?: 'head' | 'title' | 'subtitle' | 'body' | 'caption',
     customizePrefixCls?: string,
+    gutterBottom: boolean;
+    align: 'inherit' | 'left' | 'center' | 'right' | 'justify',
+    display: 'initial' | 'block' | 'inline',
 
     // decorations
     underline?: boolean;
@@ -54,6 +57,9 @@ const Typography: React.SFC<TypographyProps> = props => {
         customizePrefixCls,
         children,
         color,
+        gutterBottom,
+        align,
+        display,
         ...other
     } = props;
 
@@ -62,9 +68,13 @@ const Typography: React.SFC<TypographyProps> = props => {
     const Component = (component || (paragraph ? 'p' : HEADLINE_MAPPING[variant]) || 'span');
 
     return React.createElement(Component, {
-        className: classNames(className, {
+        className: classNames(prefixCls, {
             [`${prefixCls}-${variant}`]: variant,
-            [`${prefixCls}-${color}`]: color
+            [`${prefixCls}-${color}`]: color,
+            [`${prefixCls}-gutter-bottom`]: gutterBottom,
+            [`${prefixCls}-align-${align}`]: align !== 'inherit',
+            [`${prefixCls}-display-${display}`]: display !== 'initial',
+            className
         }),
         ...other
     }, textNode);
