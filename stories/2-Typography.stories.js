@@ -18,7 +18,7 @@ export const variant = () => (
                 {
                     variantArr.map((item) =>
                         (
-                            <Typography variant={item} display="block">
+                            <Typography variant={item} display="block" key={item}>
                                 PLAN B
                             </Typography>
                         ))
@@ -31,7 +31,7 @@ export const variant = () => (
                 {
                     colorArr.map((item) =>
                         (
-                            <Typography variant="subtitle" color={item}>
+                            <Typography variant="subtitle" color={item} key={item}>
                                 PLAN B
                             </Typography>
                         ))
@@ -55,6 +55,5 @@ export const variant = () => (
                 </Typography>
             </CardContent>
         </Card>
-        <Typography variant='title'>Props</Typography>
     </>
 );

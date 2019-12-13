@@ -2,6 +2,7 @@
 
 .pb-typography {
   margin: 0;
+  user-select: none;
 
   &-gutter-bottom {
     margin-bottom: 0.5em;

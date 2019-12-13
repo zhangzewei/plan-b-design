@@ -1,7 +1,6 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
-import Typography from "./components/typography/Typography";
 import Dropdown from "./components/dropdown";
 
 const App = () => {
@@ -21,10 +20,6 @@ const App = () => {
         >
           Learn React
         </a>
-        <Typography variant="head" color="primary" underline>
-          Typography
-        </Typography>
-
         <Dropdown overlay={Dom} trigger={["click"]}>
           <div>aaaa</div>
         </Dropdown>

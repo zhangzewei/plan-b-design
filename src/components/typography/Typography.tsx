@@ -18,9 +18,9 @@ interface TypographyProps {
     paragraph?: boolean,
     variant?: 'head' | 'title' | 'subtitle' | 'body' | 'caption',
     customizePrefixCls?: string,
-    gutterBottom: boolean;
-    align: 'inherit' | 'left' | 'center' | 'right' | 'justify',
-    display: 'initial' | 'block' | 'inline',
+    gutterBottom?: boolean;
+    align?: 'inherit' | 'left' | 'center' | 'right' | 'justify',
+    display?: 'initial' | 'block' | 'inline',
 
     // decorations
     underline?: boolean;
@@ -78,6 +78,6 @@ const Typography: React.SFC<TypographyProps> = props => {
         }),
         ...other
     }, textNode);
-}
+};
 
 export default Typography;
