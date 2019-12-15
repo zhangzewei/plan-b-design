@@ -1,0 +1,34 @@
+@import '../../../asset/index.scss';
+.pb-notifcation {
+  &-right-top {
+    position: absolute;
+    height: auto;
+    right: 30px;
+    top: 50px;
+  }
+
+  &-left-top {
+    position: absolute;
+    height: auto;
+    left: 30px;
+    top: 50px;
+  }
+}
+
+.pb-notice {
+  display: flex;
+  justify-content: space-between;
+  width: 266px;
+  border-radius: $GLOBAL_BORDER_RADIUS;
+  box-shadow: 0 2px 8px 0 rgba(153, 153, 153, 0.2);
+  background-color: $common-bg-primary;
+  margin-bottom: 20px;
+  padding: 8px 20px;
+
+  .notice-close-btn {
+    cursor: pointer;
+    flex: 0 0 20px;
+    text-align: center;
+    user-select: none;
+  }
+}

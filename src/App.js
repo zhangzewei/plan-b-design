@@ -2,23 +2,36 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
 import Typography from "./components/typography/Typography";
+import Notification from "./components/notification";
 
 const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img
+          src={logo}
+          className="App-logo"
+          alt="logo"
+          onClick={() => {
+            Notification.notice({
+              message: "111",
+            });
+          }}
+        />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
+        <p
           className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={() => {
+            Notification.notice({
+              message: "222",
+              placement: "left-top",
+            });
+          }}
         >
           Learn React
-        </a>
+        </p>
         <Typography variant="head" color="primary" underline>
           Typography
         </Typography>
