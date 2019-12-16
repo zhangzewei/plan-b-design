@@ -26,7 +26,6 @@ const msgList = [
   {
     message: 'warning',
     type: 'warning',
-    width: 500
   },
 ];
 
@@ -63,7 +62,6 @@ class NotificationBtns extends React.Component {
       {
         message: 'warning',
         type: 'warning',
-        width: 500
       },
     ];
     

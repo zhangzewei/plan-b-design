@@ -33,10 +33,17 @@ class Notice extends React.Component<NoticeProps> {
     }
   }
 
+  componentWillUnmount() {
+    if (this.timer) {
+      clearTimeout(this.timer as NodeJS.Timeout);
+      this.timer = null;
+    }
+  }
+
   onMouseEnter = (e: React.MouseEvent) => {
     e.preventDefault();
     const { duration } = this.props;
-    if (duration) {
+    if (duration || this.timer) {
       clearTimeout(this.timer as NodeJS.Timeout);
       this.timer = null;
     }
