@@ -1,7 +1,9 @@
 import React from 'react';
 import cuid from 'cuid';
 import ReactDOM from 'react-dom';
+import { get } from 'lodash';
 import Notice, { NoticeProps } from './Notice';
+import { NotificationOptions } from './NotificationFactory';
 
 import './style/style.scss';
 
@@ -10,12 +12,29 @@ interface NotificationProps {
   closeIcon?: React.ReactNode,
 }
 
+export interface NotificationInstanceProps extends NotificationOptions{
+  container: HTMLElement;
+}
+
+export interface NotificationInstanceCallbackReturn {
+  notice: (noticeProps: NoticeProps) => void,
+  removeNotice: (key: string) => void,
+  destroy: () => void,
+  component: Notification,
+  container: HTMLElement
+}
+
 class Notification extends React.Component<NotificationProps, {
   notices: NoticeProps[];
 }> {
-  static newNotificationInstance: (props: any, callback: any) => void;
+  node: any;
+  static newNotificationInstance: (
+    props: NotificationInstanceProps,
+    callback: (n: NotificationInstanceCallbackReturn) => void
+  ) => void;
   constructor(props: NotificationProps) {
     super(props);
+    this.node = null;
     this.state = {
       notices: [],
     }
@@ -53,7 +72,10 @@ class Notification extends React.Component<NotificationProps, {
   }
 }
 
-Notification.newNotificationInstance = (props: any, callback: any) => {
+Notification.newNotificationInstance = (
+  props: NotificationInstanceProps,
+  callback: (n: NotificationInstanceCallbackReturn) => void
+) => {
   const div = props.container || document.createElement('div');
   document.body.appendChild(div);
   let called = false;
@@ -66,7 +88,7 @@ Notification.newNotificationInstance = (props: any, callback: any) => {
       notice: (noticeProps: NoticeProps) => notification.addNotice(noticeProps),
       removeNotice: (key: string) => notification.removeNotice(key),
       component: notification,
-      destroy() {
+      destroy: () => {
         ReactDOM.unmountComponentAtNode(div);
         div.parentNode && div.parentNode.removeChild(div);
       },

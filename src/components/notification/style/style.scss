@@ -13,12 +13,20 @@
     left: 30px;
     top: 50px;
   }
+
+  &-center-top {
+    position: absolute;
+    height: auto;
+    top: 50px;
+    max-width: 400px;
+    left: calc(50% - 200px);
+  }
 }
 
 .pb-notice {
   display: flex;
   justify-content: space-between;
-  width: 266px;
+  min-width: 266px;
   border-radius: $GLOBAL_BORDER_RADIUS;
   box-shadow: 0 2px 8px 0 rgba(153, 153, 153, 0.2);
   background-color: $common-bg-primary;
@@ -30,5 +38,37 @@
     flex: 0 0 20px;
     text-align: center;
     user-select: none;
+  }
+
+  .notice-content {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+.pb-message {
+  width: 200px;
+  &-info {
+    border-radius: $GLOBAL_BORDER_RADIUS;
+    border: solid 1px $brand-primary;
+    background-color: $brand-primary-light;
+  }
+
+  &-error {
+    border-radius: $GLOBAL_BORDER_RADIUS;
+    border: solid 1px $function-error;
+    background-color: $function-error-light;
+  }
+
+  &-success {
+    border-radius: $GLOBAL_BORDER_RADIUS;
+    border: solid 1px $function-success;
+    background-color: $function-success-light;
+  }
+
+  &-warning {
+    border-radius: $GLOBAL_BORDER_RADIUS;
+    border: solid 1px $function-warning;
+    background-color: $function-warning-light;
   }
 }

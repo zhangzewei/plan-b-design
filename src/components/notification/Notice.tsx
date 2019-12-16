@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { CommonComponentProps } from '../../common/Interface';
 
 export interface NoticeProps extends CommonComponentProps {
-  onClose: (n: any) => void;
+  onClose: (key: string) => void;
   content: React.ReactNode;
   key: string;
   noticeId: string;
@@ -53,7 +53,7 @@ class Notice extends React.Component<NoticeProps> {
   }
 
   render() {
-    const { className, content, noticeId, disableIcon, onClose } = this.props;
+    const { className, content, noticeId, disableIcon, style, onClose } = this.props;
     const classname = classnames('pb-notice', className);
     const closeIcon = disableIcon ? null : (
       <div className="notice-close-btn" onClick={() => {
@@ -64,6 +64,7 @@ class Notice extends React.Component<NoticeProps> {
       className={classname}
       onMouseEnter={this.onMouseEnter}
       onMouseLeave={this.onMouseLeave}
+      style={style}
     >
       <div className="notice-content">{content}</div>
       {closeIcon}
