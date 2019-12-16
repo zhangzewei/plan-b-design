@@ -11,12 +11,13 @@
 
 - [x] Color -- zzw
 - [x] Typography -- zy
+- [x] notification -- zzw
+- [x] Dropdown -- zzw
+- [ ] Icon -- zzw
 - [ ] Card -- zy
 - [ ] Button -- zy
-- [x] Dropdown -- zzw
 - [ ] Tooltip -- zy
 - [ ] message -- zzw
-- [ ] notification -- zzw
 - [ ] modal(多个弹窗出现) -- zy
 - [ ] badge -- zzw
 - [ ] Input
