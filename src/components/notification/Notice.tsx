@@ -8,6 +8,7 @@ export interface NoticeProps extends CommonComponentProps {
   key: string;
   noticeId: string;
   duration?: number;
+  disableIcon?: boolean;
 }
 
 export type NoticeType = {
@@ -21,19 +22,19 @@ class Notice extends React.Component<NoticeProps> {
     this.key = this.props.noticeId;
   }
 
-
-
   render() {
-    const { className, content, noticeId, onClose } = this.props;
+    const { className, content, noticeId, disableIcon, onClose } = this.props;
     const classname = classnames('pb-notice', className);
+    const closeIcon = disableIcon ? null : (
+      <div className="notice-close-btn" onClick={() => {
+        onClose(this.key);
+      }}>X</div>);
     return <div
       id={noticeId}
       className={classname}
     >
       <div className="notice-content">{content}</div>
-      <div className="notice-close-btn" onClick={() => {
-        onClose(this.key);
-      }}>X</div>
+      {closeIcon}
     </div>;
   }
 }
