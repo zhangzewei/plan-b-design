@@ -44,7 +44,8 @@ class NotificationFactory {
         div: div
       }
       n.notice({
-        content: content
+        content: content,
+        duration: options.duration
       });
     });
   }
