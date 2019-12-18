@@ -41,7 +41,7 @@ export interface NotificationInstanceCallbackReturn {
 }
 
 class NotificationFactory {
-  notifications: { [key: string]: { notification: Notification, div: HTMLDivElement } };
+  notifications: { [key: string]: { notification: NotificationInstanceCallbackReturn, div: HTMLDivElement } };
   defaultPlacement = 'right-top';
   constructor() {
     this.notifications = {};
@@ -105,34 +105,46 @@ class NotificationFactory {
     ReactDOM.render(<Notification {...props} ref={ref} />, div);
   };
 
+  open = (
+    options: NotificationOptions | MessageOptions,
+    type: 'notice' | 'message'
+  ) => {
+    const placement = type === 'message'
+      ? 'center-top'
+      : get(options, 'placement', this.defaultPlacement) as placementType;
+
+    const currentNotification = get(this.notifications, [placement, 'notification'], null);
+    if (currentNotification) {
+      currentNotification.notice(
+        type === 'message'
+        ? this.genMessageProps(options as MessageOptions)
+        : this.genNotificationProps(options)
+      );
+    } else {
+      const div = this.getContainer(placement);
+      this.getNotificationInstance({
+        container: div,
+        ...options
+      }, (n: NotificationInstanceCallbackReturn) => {
+        this.notifications[placement] = {
+          notification: n,
+          div: n.container as HTMLDivElement
+        }
+        n.notice(
+          type === 'message'
+          ? this.genMessageProps(options as MessageOptions)
+          : this.genNotificationProps(options)
+        );
+      });
+    }
+  }
+
   notice = (options: NotificationOptions) => {
-    const placement = get(options, 'placement', this.defaultPlacement) as placementType;
-    const div = this.getContainer(placement);
-    this.getNotificationInstance({
-      container: div,
-      ...options
-    }, (n: NotificationInstanceCallbackReturn) => {
-      this.notifications[placement] = {
-        notification: n.component,
-        div: div
-      }
-      n.notice(this.genNotificationProps(options));
-    });
+    this.open(options, 'notice');
   }
 
   message = (options: MessageOptions) => {
-    const messagePlacement = 'center-top';
-    const div = this.getContainer(messagePlacement);
-    this.getNotificationInstance({
-      container: div,
-      ...options
-    }, (n: NotificationInstanceCallbackReturn) => {
-      this.notifications[messagePlacement] = {
-        notification: n.component,
-        div: n.container as HTMLDivElement
-      }
-      n.notice(this.genMessageProps(options));
-    });
+    this.open(options, 'message');
   }
 }
 
