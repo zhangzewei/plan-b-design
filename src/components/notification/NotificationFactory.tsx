@@ -1,6 +1,8 @@
 import React from 'react';
 import { get } from 'lodash';
-import Notification, { NotificationInstanceCallbackReturn } from './Notification';
+import Notification from './Notification';
+import { NoticeProps } from './Notice';
+import ReactDOM from 'react-dom';
 
 type placementType = 
   'right-top' |
@@ -24,6 +26,18 @@ type messageType = 'info' | 'error' | 'succes' | 'warning';
 
 interface MessageOptions extends NotificationOptions {
   type: messageType;
+}
+
+export interface NotificationInstanceProps extends NotificationOptions{
+  container: HTMLElement;
+}
+
+export interface NotificationInstanceCallbackReturn {
+  notice: (noticeProps: NoticeProps) => void,
+  removeNotice: (key: string) => void,
+  destroy: () => void,
+  component: Notification,
+  container: HTMLElement
 }
 
 class NotificationFactory {
@@ -65,10 +79,36 @@ class NotificationFactory {
     return props;
   }
 
+  getNotificationInstance = (
+    props: NotificationInstanceProps,
+    callback: (n: NotificationInstanceCallbackReturn) => void
+  ) => {
+    const div = props.container || document.createElement('div');
+    document.body.appendChild(div);
+    let called = false;
+    function ref(notification: Notification) {
+      if (called) {
+        return;
+      }
+      called = true;
+      callback({
+        notice: (noticeProps: NoticeProps) => notification.addNotice(noticeProps),
+        removeNotice: (key: string) => notification.removeNotice(key),
+        component: notification,
+        destroy: () => {
+          ReactDOM.unmountComponentAtNode(div);
+          div.parentNode && div.parentNode.removeChild(div);
+        },
+        container: div
+      });
+    }
+    ReactDOM.render(<Notification {...props} ref={ref} />, div);
+  };
+
   notice = (options: NotificationOptions) => {
     const placement = get(options, 'placement', this.defaultPlacement) as placementType;
     const div = this.getContainer(placement);
-    Notification.newNotificationInstance({
+    this.getNotificationInstance({
       container: div,
       ...options
     }, (n: NotificationInstanceCallbackReturn) => {
@@ -83,7 +123,7 @@ class NotificationFactory {
   message = (options: MessageOptions) => {
     const messagePlacement = 'center-top';
     const div = this.getContainer(messagePlacement);
-    Notification.newNotificationInstance({
+    this.getNotificationInstance({
       container: div,
       ...options
     }, (n: NotificationInstanceCallbackReturn) => {
