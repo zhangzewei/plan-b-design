@@ -97,4 +97,4 @@ class NotificationBtns extends React.Component {
   }
 }
 
-export const notification = () => <NotificationBtns />;
+export const message = () => <NotificationBtns />;

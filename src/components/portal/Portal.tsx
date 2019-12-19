@@ -1,5 +1,5 @@
 import React from 'react';
-import { createPortal } from 'react-dom';
+import ReactDom, { createPortal } from 'react-dom';
 import { CommonComponentProps } from '../../common/Interface';
 
 interface PortalProps extends CommonComponentProps {
@@ -15,7 +15,7 @@ class Portal extends React.Component<PortalProps> {
     this.mountDom = document.createElement('div');
     this.container = props.getContainer
     ? props.getContainer()
-    : document.getElementsByTagName('body');
+    : window.document.body;
   }
 
   componentWillMount() {
@@ -38,10 +38,12 @@ class Portal extends React.Component<PortalProps> {
   render() {
     const { children } = this.props;
     if (this.container && this.getVisible()) {
-      return createPortal(children, this.mountDom);
-    } else {
-      return null;
+      if (createPortal) {
+        return createPortal(children, this.mountDom);
+      }
+      ReactDom.render(children, this.mountDom);
     }
+    return null;
   }
 }
 

@@ -1,9 +1,6 @@
 import React from 'react';
 import cuid from 'cuid';
-import ReactDOM from 'react-dom';
-import { get } from 'lodash';
 import Notice, { NoticeProps } from './Notice';
-import { NotificationOptions } from './NotificationFactory';
 
 import './style/style.scss';
 
