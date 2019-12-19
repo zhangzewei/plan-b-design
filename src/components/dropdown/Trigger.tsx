@@ -8,16 +8,18 @@ import classNames from 'classnames';
 export interface TriggerProps extends CommonComponentProps {
   trigger: ['click', 'hover', 'custom'];
   popup: React.ReactNode | (() => React.ReactNode);
-  visiable?: boolean;
+  visible?: boolean;
   className?: string;
   style?: React.CSSProperties,
+  popupClassName?: string;
+  popupStyle?: React.CSSProperties;
   onClick?: Function,
   onVisibleChange?: Function,
   getPopupContainer?: Function;
 }
 
 export function fillRef<T>(ref: React.Ref<T>, node: T) {
-  if (typeof ref === 'function') {
+    if (typeof ref === 'function') {
     ref(node);
   } else if (typeof ref === 'object' && ref && 'current' in ref) {
     (ref as any).current = node;
@@ -53,18 +55,22 @@ class Trigger extends Component<TriggerProps, {
 
   componentWillReceiveProps(nextProps: TriggerProps) {
     if (this.isCustomerToHideOrShow()) {
-      this.setState({ triggerVisible: nextProps.visiable !== undefined ? nextProps.visiable : false });
+      this.setState({ triggerVisible: nextProps.visible !== undefined ? nextProps.visible : false });
     }
   }
 
   getPortalContainer = () => {
     const {
       popup,
+      popupClassName,
+      popupStyle
     } = this.props;
     const mouseProps: HTMLAttributes<HTMLElement> = {};
     return (
       <Popup
         {...mouseProps}
+        style={{...popupStyle}}
+        className={popupClassName}
         point={this.getRefPoint()}
         popupVisible={this.state.triggerVisible}
         ref={composeRef(this.popupRef)}
@@ -193,14 +199,14 @@ class Trigger extends Component<TriggerProps, {
 
     const newChildProps: HTMLAttributes<HTMLElement> & { key: string } = { key: 'trigger' };
     const child = (
-      <div>
+      <div style={{display:"inline-block"}}>
         {trigger}
         {portal}
       </div>
     );
 
     this.genNewChildren(newChildProps);
-    
+
     const newChild = React.cloneElement(child, {
       ...newChildProps,
       ref: composeRef(this.node, (children as any).ref)

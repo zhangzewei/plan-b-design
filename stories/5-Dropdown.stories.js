@@ -8,15 +8,15 @@ export default {
   title: "Dropdown",
 };
 
-const DropdownVoerlay = (
-  <div>dropdownVoerlay</div>
+const DropdownOverlay = (
+  <div>DropdownOverlay</div>
 );
 
 class DropdownCustom extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dropdownVisiable: false,
+      dropdownVisible: false,
     }
   }
 
@@ -24,13 +24,13 @@ class DropdownCustom extends React.Component {
 
     return (
       <Dropdown
-        overlay={DropdownVoerlay}
-        visiable={this.state.dropdownVisiable}
-        trigger={["custom"]}
+          overlay={DropdownOverlay}
+          visible={this.state.dropdownVisible}
+          trigger={["custom"]}
       >
-        <input 
-          onFocus={() => this.setState({ dropdownVisiable: true })}
-          onBlur={() => this.setState({ dropdownVisiable: false })}
+        <input
+          onFocus={() => this.setState({ dropdownVisible: true })}
+          onBlur={() => this.setState({ dropdownVisible: false })}
         />
       </Dropdown>
     );
@@ -77,7 +77,7 @@ class CustomerDemo extends React.Component {
           </code>
         </pre>
       </>
-    ); 
+    );
   }
 }
 
@@ -100,7 +100,7 @@ class HoverDemo extends React.Component {
       <>
         <h3>Demo</h3>
         <Dropdown
-          overlay={DropdownVoerlay}
+          overlay={DropdownOverlay}
           trigger={["hover"]}
         >
           <div>hover me</div>
@@ -135,7 +135,7 @@ class ClickDemo extends React.Component {
       <>
         <h3>Demo</h3>
         <Dropdown
-          overlay={DropdownVoerlay}
+          overlay={DropdownOverlay}
           trigger={["click"]}
         >
           <div>click me</div>

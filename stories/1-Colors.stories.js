@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "../src/components/card";
-import CardHeader from "../src/components/cardHeader/CardHeader";
+import Card from "../src/components/card/Card";
+import CardHeader from "../src/components/card/CardHeader";
 
 import '../src/asset/colors.css';
 

@@ -39,11 +39,11 @@ class Portal extends React.Component<PortalProps> {
     const { children } = this.props;
     if (this.container && this.getVisible()) {
       if (createPortal) {
-        return createPortal(children, this.mountDom);
+      return createPortal(children, this.mountDom);
       }
       ReactDom.render(children, this.mountDom);
     }
-    return null;
+      return null;
   }
 }
 

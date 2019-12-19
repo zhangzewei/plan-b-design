@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './style/index.scss'
+import './style/cardActions.scss'
 import classNames from "classnames";
 import { ReactElement, ReactNode } from "react";
 
@@ -10,17 +10,16 @@ interface CardActionsProps {
     disableActionSpacing?: boolean;
 }
 
-function cloneElementWithClassName(child: ReactElement, className: string) {
-    return React.cloneElement(child, {
+const cloneElementWithClassName = (child: ReactElement, className: string) =>
+    React.cloneElement(child, {
         className: classNames(child.props.className, className),
     });
-}
 
-function cloneChildrenWithClassName(children: ReactNode, className: string) {
-    return React.Children.map(children, child => {
-        return React.isValidElement(child) && cloneElementWithClassName(child, className);
-    });
-}
+const cloneChildrenWithClassName = (children: ReactNode, className: string) =>
+    React.Children.map(
+        children,
+        child => React.isValidElement(child) && cloneElementWithClassName(child, className)
+    );
 
 const getPrefixCls = (suffixCls: string, customizePrefixCls?: string) => {
     if (customizePrefixCls) return customizePrefixCls;
@@ -44,6 +43,6 @@ const CardActions: React.SFC<CardActionsProps> = props => {
             {disableActionSpacing ? children : cloneChildrenWithClassName(children, `${prefixCls}-item`)}
         </div>
     )
-}
+};
 
 export default CardActions;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './style/index.scss'
+import './style/cardContent.scss'
 import classNames from "classnames";
 
 interface CardContentProps {

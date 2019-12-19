@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './style/index.scss';
+import './style/cardHeader.scss';
 import classNames from "classnames";
 import Typography from '../typography/Typography';
 
@@ -40,7 +40,7 @@ const CardHeader: React.SFC<CardHeaderProps> = props => {
     const subheader = subheaderProp ? (
         <Typography
             variant={avatar ? 'body' : 'subtitle'}
-            color="secondary"
+            color="textSecondary"
             component="span"
         >
             {subheaderProp}
@@ -57,6 +57,6 @@ const CardHeader: React.SFC<CardHeaderProps> = props => {
             {action && <div className={`${prefixCls}-action`}>{action}</div>}
         </div>
     );
-}
+};
 
 export default CardHeader;

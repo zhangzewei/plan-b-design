@@ -1,45 +1,93 @@
-.pb-typography-head {
-  font-size: 24px;
-  line-height: 32px;
+@import "../../../asset/colors";
+
+.pb-typography {
   margin: 0;
+  user-select: none;
+
+  &-gutter-bottom {
+    margin-bottom: 0.5em;
+  }
+
+  &-head {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  &-title {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  &-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  &-body {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  &-caption {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  &-textPrimary {
+    color: #333;
+  }
+
+  &-textSecondary {
+    color: #8ea0b8;
+  }
+
+  &-textThird {
+    color: #999;
+  }
+
+  &-disabled {
+    color: #ced2da;
+  }
+
+  &-link {
+    color: $brand-primary;
+  }
+
+  &-success {
+    color: $function-success;
+  }
+
+  &-warning {
+    color: $function-warning;
+  }
+
+  &-error {
+    color: $function-error;
+  }
+
+  &-align-left {
+    text-align: left;
+  }
+
+  &-align-center {
+    text-align: center;
+  }
+
+  &-align-right {
+    text-align: right;
+  }
+
+  &-align-justify {
+    text-align: justify;
+  }
+
+  &-display-inline {
+    display: inline-block;
+  }
+
+  &-display-block {
+    display: block;
+  }
 }
 
-.pb-typography-title {
-  font-size: 18px;
-  line-height: 28px;
-  margin: 0;
-}
 
-.pb-typography-subtitle {
-  font-size: 16px;
-  line-height: 24px;
-  margin: 0;
-}
-
-.pb-typography-body {
-  font-size: 14px;
-  line-height: 22px;
-  margin: 0;
-}
-
-.pb-typography-caption {
-  font-size: 12px;
-  line-height: 20px;
-  margin: 0;
-}
-
-.pb-typography-primary {
-  color: #333;
-}
-
-.pb-typography-secondary {
-  color: #8ea0b8;
-}
-
-.pb-typography-third {
-  color: #999;
-}
-
-.pb-typography-disabled {
-  color: #ced2da;
-}
