@@ -1,37 +1,48 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { createPortal } from 'react-dom';
+import { CommonComponentProps } from '../../common/Interface';
 
-interface PortalProps {
+interface PortalProps extends CommonComponentProps {
   getContainer?: Function;
-  children: React.ReactNode,
+  visible?: boolean;
 }
 
-export const Portal = (props: PortalProps) =>  {
-  const container = props.getContainer
+class Portal extends React.Component<PortalProps> {
+  mountDom: HTMLElement;
+  container: HTMLElement;
+  constructor(props:PortalProps) {
+    super(props);
+    this.mountDom = document.createElement('div');
+    this.container = props.getContainer
     ? props.getContainer()
     : document.getElementsByTagName('body');
-  const element = document.createElement('div');
-  
-  useEffect(() => {
-    insertElement();
-    return () => {
-      removeContainer()
-    };
-  }, []);
-
-  const insertElement = () => {
-    container.appendChild(element);
   }
 
-  const removeContainer = () => {
-    if (element) {
-      container.removeChild(element);
+  componentWillMount() {
+    this.container.appendChild(this.mountDom);
+  }
+
+  componentWillUnmount() {
+    if (this.mountDom) {
+      this.container.removeChild(this.mountDom);
     }
   }
 
-  if (container) {
-    return createPortal(props.children, element);
-  } else {
-    return null;
+  getVisible = () => {
+    if ('visible' in this.props) {
+      return this.props.visible;
+    }
+    return true;
+  }
+
+  render() {
+    const { children } = this.props;
+    if (this.container && this.getVisible()) {
+      return createPortal(children, this.mountDom);
+    } else {
+      return null;
+    }
   }
 }
+
+export default Portal;

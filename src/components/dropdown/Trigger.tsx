@@ -1,5 +1,5 @@
 import React, { Component, HTMLAttributes } from 'react';
-import { Portal } from '../portal/Portal';
+import Portal from '../portal/Portal';
 import Popup from './Popup';
 import { offset, contains } from '../../common/utils';
 import { CommonComponentProps } from '../../common/Interface';
