@@ -11,18 +11,18 @@
 
 - [x] Color -- zzw
 - [x] Typography -- zy
-- [x] notification -- zzw
+- [x] Notification -- zzw
 - [x] Dropdown -- zzw
-- [x] message -- zzw
+- [x] Message -- zzw
 - [ ] Icon -- zzw
 - [ ] Card -- zy
 - [ ] Button -- zy
 - [ ] Tooltip -- zy
-- [ ] modal(多个弹窗出现) -- zy
-- [ ] badge -- zzw
+- [ ] Modal(多个弹窗出现) -- zy
+- [ ] Badge -- zzw
 - [ ] Input
 - [ ] Search
 - [ ] Textarea
 - [ ] Radio
-- [ ] checkbox
+- [ ] Checkbox
 - [ ] Form
