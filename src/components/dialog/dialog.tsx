@@ -20,7 +20,6 @@ export default class Dialog extends Component<DialogProps> {
             <button onClick={onClose}>关闭</button>
           </div>
         </div>
-        
       </div>
     )
   }

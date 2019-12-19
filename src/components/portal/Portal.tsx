@@ -18,7 +18,7 @@ class Portal extends React.Component<PortalProps> {
     : window.document.body;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.container.appendChild(this.mountDom);
   }
 

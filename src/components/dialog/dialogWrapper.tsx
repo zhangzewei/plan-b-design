@@ -7,25 +7,9 @@ export interface DialogWrapperProps extends DialogProps {
   getContainer?: () => void;
 }
 
-class DialogWrapper extends Component<DialogWrapperProps, {
-  visible: boolean
-}>{
-  constructor(props: DialogWrapperProps) {
-    super(props);
-    this.state = {
-      visible: props.visible || false,
-    }
-  }
-
-  componentWillReceiveProps(nextProps: DialogWrapperProps) {
-    this.setState({
-      visible: nextProps.visible || false,
-    });
-  }
-
+class DialogWrapper extends Component<DialogWrapperProps>{
   render() {
-    const { visible } = this.state;
-    const { getContainer, children, onClose } = this.props;
+    const { getContainer, children, onClose, visible } = this.props;
     if (visible) {
       return (
         <Portal
