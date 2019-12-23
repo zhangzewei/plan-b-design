@@ -1,12 +1,12 @@
 import React, { Component, HTMLAttributes } from 'react';
 import Portal from '../portal/Portal';
 import Popup from './Popup';
-import { offset, contains } from '../../common/utils';
+import { offset } from '../../common/utils';
 import { CommonComponentProps } from '../../common/Interface';
 import classNames from 'classnames';
 
 export interface TriggerProps extends CommonComponentProps {
-  trigger: ['click', 'hover', 'custom'];
+  action: ['click', 'hover', 'custom'];
   popup: React.ReactNode | (() => React.ReactNode);
   visible?: boolean;
   className?: string;
@@ -19,7 +19,7 @@ export interface TriggerProps extends CommonComponentProps {
 }
 
 export function fillRef<T>(ref: React.Ref<T>, node: T) {
-    if (typeof ref === 'function') {
+  if (typeof ref === 'function') {
     ref(node);
   } else if (typeof ref === 'object' && ref && 'current' in ref) {
     (ref as any).current = node;
@@ -35,27 +35,29 @@ export function composeRef<T>(...refs: React.Ref<T>[]): React.Ref<T> {
 }
 
 class Trigger extends Component<TriggerProps, {
-  triggerVisible: boolean
+  popupVisible: boolean;
 }> {
   popupContainer: HTMLElement;
   node: any;
   popupRef: any;
   clickPopupOutSideFun: void | null;
+  delayTimer: ReturnType<typeof setTimeout> | null;
 
   constructor(props: TriggerProps) {
     super(props);
     this.state = {
-      triggerVisible: false
-    }
+      popupVisible: false,
+    };
     this.popupContainer = this.creatPopupContainer();
     this.node = React.createRef();
     this.popupRef = React.createRef();
     this.clickPopupOutSideFun = null;
+    this.delayTimer = null;
   }
 
   componentWillReceiveProps(nextProps: TriggerProps) {
     if (this.isCustomerToHideOrShow()) {
-      this.setState({ triggerVisible: nextProps.visible !== undefined ? nextProps.visible : false });
+      this.setState({ popupVisible: nextProps.visible !== undefined ? nextProps.visible : false });
     }
   }
 
@@ -63,16 +65,23 @@ class Trigger extends Component<TriggerProps, {
     const {
       popup,
       popupClassName,
-      popupStyle
+      popupStyle,
     } = this.props;
+    const { popupVisible } = this.state;
     const mouseProps: HTMLAttributes<HTMLElement> = {};
+
+    if (this.isHoverToHideOrShow()) {
+      mouseProps.onMouseEnter = this.onPopupMouseEnter;
+      mouseProps.onMouseLeave = this.onPopupMouseLeave;
+    }
+
     return (
       <Popup
         {...mouseProps}
-        style={{...popupStyle}}
         className={popupClassName}
+        style={popupStyle}
         point={this.getRefPoint()}
-        popupVisible={this.state.triggerVisible}
+        visible={popupVisible}
         ref={composeRef(this.popupRef)}
       >
         {typeof popup === 'function' ? popup() : popup}
@@ -87,14 +96,7 @@ class Trigger extends Component<TriggerProps, {
     popupContainer.style.left = '0';
     popupContainer.style.width = '100%';
     return popupContainer;
-  }
-
-  clearOutsideHandler() {
-    if (this.clickPopupOutSideFun) {
-      window.document.removeEventListener('click', (this.clickPopupOutSideFun as any));
-      this.clickPopupOutSideFun = null;
-    }
-  }
+  };
 
   getContainer = () => {
     const { props } = this;
@@ -109,26 +111,46 @@ class Trigger extends Component<TriggerProps, {
   };
 
   isClickToHideOrShow = () => {
-    const { trigger } = this.props;
-    return trigger.indexOf('click') !== -1;
-  }
+    const { action } = this.props;
+    return action.indexOf('click') !== -1;
+  };
 
-  isMouseLeaveToHideOrShow = () => {
-    const { trigger } = this.props;
-    return trigger.indexOf('hover') !== -1 ;
-  }
+  isHoverToHideOrShow = () => {
+    const { action } = this.props;
+    return action.indexOf('hover') !== -1;
+  };
 
   isCustomerToHideOrShow = () => {
-    const { trigger } = this.props;
-    return trigger.indexOf('custom') !== -1 ;
-  }
+    const { action } = this.props;
+    return action.indexOf('custom') !== -1;
+  };
 
-  changeVisiable = (visiable: boolean, event: React.MouseEvent) => {
-    if (this.state.triggerVisible !== visiable) {
-      this.setState({ triggerVisible: visiable });
-      this.props.onVisibleChange && this.props.onVisibleChange(visiable, event);
+  delaySetPopupVisible = (visible: boolean, delayS: number, event: React.MouseEvent) => {
+    this.clearDelayTimer();
+
+    if (delayS === 0 || !!delayS) {
+      this.delayTimer = setTimeout(() => {
+        this.setPopupVisible(visible, event);
+      }, delayS * 1000);
+      return;
     }
-  }
+
+    this.setPopupVisible(visible, event);
+  };
+
+  setPopupVisible = (visible: boolean, event: React.MouseEvent) => {
+    if (this.state.popupVisible !== visible) {
+      this.setState({ popupVisible: visible });
+      this.props.onVisibleChange && this.props.onVisibleChange(visible, event);
+    }
+  };
+
+  clearDelayTimer = () => {
+    if (this.delayTimer) {
+      clearTimeout(this.delayTimer);
+      this.delayTimer = null;
+    }
+  };
 
   getRefPoint = () => {
     if (this.node.current) {
@@ -136,57 +158,83 @@ class Trigger extends Component<TriggerProps, {
     } else {
       return {
         left: 0,
-        top: 0
-      }
+        top: 0,
+      };
     }
-  }
+  };
 
-  onMouseEnter = (e: React.MouseEvent) => this.changeVisiable(true, e);
+  onMouseEnter = (e: React.MouseEvent) => {
+    this.delaySetPopupVisible(true, 0, e);
+  };
 
-  onMouseLeave = (e: React.MouseEvent) => this.changeVisiable(false, e);
+  onMouseLeave = (e: React.MouseEvent) => {
+    this.delaySetPopupVisible(false, 0, e);
+  };
 
-  onTriggerClick = (e: React.MouseEvent) => {
-    if (contains(this.node.current, e.target)) {
-      this.changeVisiable(!this.state.triggerVisible, e);
-    }
-  }
+  onPopupMouseEnter = () => {
+    this.clearDelayTimer();
+  };
 
-  onClickPopupOutSide = (e: React.MouseEvent) => {
-    if (contains(this.node.current, e.target)) return;
-    if (this.state.triggerVisible && contains(this.popupRef.current, e.target)) return;
-    this.changeVisiable(false, e);
-  }
+  onPopupMouseLeave = (e: React.MouseEvent) => {
+    this.delaySetPopupVisible(false, 0, e);
+  };
 
-  genNewChildren = (
-    newChildProps: HTMLAttributes<HTMLElement> & { key: string } = { key: 'trigger' }
-  ) => {
-    if (this.isMouseLeaveToHideOrShow()) {
-      newChildProps.onMouseEnter = this.onMouseEnter;
-      newChildProps.onMouseLeave = this.onMouseLeave;
-    }
-    if (this.isClickToHideOrShow()) {
-      newChildProps.onClick = this.onTriggerClick;
-      this.clickPopupOutSideFun = window.document.addEventListener('click', this.onClickPopupOutSide as any);
-    }
-  }
+  onClick = (e: React.MouseEvent) => {
+    this.setPopupVisible(!this.state.popupVisible, e);
+  };
+
+  // onTriggerClick = (e: React.MouseEvent) => {
+  //   if (contains(this.node.current, e.target)) {
+  //     this.setPopupVisible(!this.state.popupVisible, e);
+  //   }
+  // };
+  //
+  // onClickPopupOutSide = (e: React.MouseEvent) => {
+  //   if (contains(this.node.current, e.target)) return;
+  //   if (this.state.popupVisible && contains(this.popupRef.current, e.target)) return;
+  //   this.setPopupVisible(false, e);
+  // };
+
+  // genNewChildren = (
+  //   newChildProps: HTMLAttributes<HTMLElement> & {key: string} = {key: "trigger"},
+  // ) => {
+  //   if (this.isHoverToHideOrShow()) {
+  //     newChildProps.onMouseEnter = this.onMouseEnter;
+  //     newChildProps.onMouseLeave = this.onMouseLeave;
+  //   }
+  //   if (this.isClickToHideOrShow()) {
+  //     newChildProps.onClick = this.onTriggerClick;
+  //     this.clickPopupOutSideFun = window.document.addEventListener("click", this.onClickPopupOutSide as any);
+  //   }
+  // };
 
   render() {
     const {
       children,
-      className
+      className,
     } = this.props;
 
-    const {
-      triggerVisible
-    } = this.state;
+    const { popupVisible } = this.state;
+
+    const childProps: HTMLAttributes<HTMLElement> = {};
+
+    if (this.isHoverToHideOrShow()) {
+      childProps.onMouseEnter = this.onMouseEnter;
+      childProps.onMouseLeave = this.onMouseLeave;
+    }
+
+    if (this.isClickToHideOrShow()) {
+      childProps.onClick = this.onClick;
+    }
 
     const trigger = React.cloneElement(children, {
       className: classNames('pb-dropdown-trigger', className),
-      ref: composeRef(this.node, (children as any).ref) // compose this component ref and children refs
+      ...childProps,
+      ref: composeRef(this.node, (children as any).ref),
     });
 
     let portal: React.ReactElement | null = null;
-    if (triggerVisible) {
+    if (popupVisible) {
       portal = (
         <Portal
           key="portal"
@@ -197,21 +245,10 @@ class Trigger extends Component<TriggerProps, {
       );
     }
 
-    const newChildProps: HTMLAttributes<HTMLElement> & { key: string } = { key: 'trigger' };
-    const child = (
-      <div style={{display:"inline-block"}}>
-        {trigger}
-        {portal}
-      </div>
-    );
-
-    this.genNewChildren(newChildProps);
-
-    const newChild = React.cloneElement(child, {
-      ...newChildProps,
-      ref: composeRef(this.node, (children as any).ref)
-    });
-    return newChild;
+    return [
+      trigger,
+      portal,
+    ];
   }
 }
 

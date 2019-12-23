@@ -1,4 +1,4 @@
-import React, { Component, HTMLAttributes } from 'react';
+import React, { Component } from 'react';
 import Trigger from './Trigger';
 import { CommonComponentProps } from '../../common/Interface';
 
@@ -20,18 +20,20 @@ class Dropdown extends Component<DropdownProps> {
   componentWillMount() {
     const { trigger, visible } = this.props;
     if (trigger.indexOf('custom') > -1 && visible === undefined) {
-      console.error('if use custom as trigger then should use visiable too');
+      console.error('if use custom as trigger then should use visible too');
     }
   }
 
   render() {
     const {
       overlay,
+      trigger,
       ...other
     } = this.props;
     return (
       <Trigger
         popup={overlay}
+        action={trigger}
         {...other}
       />
     );

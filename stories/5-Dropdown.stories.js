@@ -1,15 +1,29 @@
-import React from "react";
+import React from 'react';
 import Prism from 'prismjs';
-import Dropdown from "../src/components/dropdown";
+import Dropdown from '../src/components/dropdown';
 
-import "./prism.css";
+import './prism.css';
+import Card, { CardContent } from '../src/components/card';
 
 export default {
-  title: "Dropdown",
+  title: 'Dropdown',
 };
 
+const overlayArr = ['first text', 'second text', 'third text'];
+
 const DropdownOverlay = (
-  <div>DropdownOverlay</div>
+  <Card>
+    <CardContent>
+      {
+        overlayArr.map((item) => (
+          <div key={item} onClick={() => {
+            console.log('li click');
+          }}>{item}
+          </div>
+        ))
+      }
+    </CardContent>
+  </Card>
 );
 
 class DropdownCustom extends React.Component {
@@ -17,16 +31,16 @@ class DropdownCustom extends React.Component {
     super(props);
     this.state = {
       dropdownVisible: false,
-    }
+    };
   }
 
   render() {
 
     return (
       <Dropdown
-          overlay={DropdownOverlay}
-          visible={this.state.dropdownVisible}
-          trigger={["custom"]}
+        overlay={DropdownOverlay}
+        visible={this.state.dropdownVisible}
+        trigger={['custom']}
       >
         <input
           onFocus={() => this.setState({ dropdownVisible: true })}
@@ -66,7 +80,7 @@ class CustomerDemo extends React.Component {
           );
         }
       }`;
-    return  (
+    return (
       <>
         <h3>Demo</h3>
         <DropdownCustom />
@@ -96,12 +110,12 @@ class HoverDemo extends React.Component {
         <div>click me</div>
       </Dropdown>
     );`;
-    return  (
+    return (
       <>
         <h3>Demo</h3>
         <Dropdown
           overlay={DropdownOverlay}
-          trigger={["hover"]}
+          trigger={['hover']}
         >
           <div>hover me</div>
         </Dropdown>
@@ -131,12 +145,12 @@ class ClickDemo extends React.Component {
         <div>click me</div>
       </Dropdown>
     );`;
-    return  (
+    return (
       <>
         <h3>Demo</h3>
         <Dropdown
           overlay={DropdownOverlay}
-          trigger={["click"]}
+          trigger={['click']}
         >
           <div>click me</div>
         </Dropdown>
