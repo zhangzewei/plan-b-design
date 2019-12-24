@@ -183,31 +183,6 @@ class Trigger extends Component<TriggerProps, {
     this.setPopupVisible(!this.state.popupVisible, e);
   };
 
-  // onTriggerClick = (e: React.MouseEvent) => {
-  //   if (contains(this.node.current, e.target)) {
-  //     this.setPopupVisible(!this.state.popupVisible, e);
-  //   }
-  // };
-  //
-  // onClickPopupOutSide = (e: React.MouseEvent) => {
-  //   if (contains(this.node.current, e.target)) return;
-  //   if (this.state.popupVisible && contains(this.popupRef.current, e.target)) return;
-  //   this.setPopupVisible(false, e);
-  // };
-
-  // genNewChildren = (
-  //   newChildProps: HTMLAttributes<HTMLElement> & {key: string} = {key: "trigger"},
-  // ) => {
-  //   if (this.isHoverToHideOrShow()) {
-  //     newChildProps.onMouseEnter = this.onMouseEnter;
-  //     newChildProps.onMouseLeave = this.onMouseLeave;
-  //   }
-  //   if (this.isClickToHideOrShow()) {
-  //     newChildProps.onClick = this.onTriggerClick;
-  //     this.clickPopupOutSideFun = window.document.addEventListener("click", this.onClickPopupOutSide as any);
-  //   }
-  // };
-
   render() {
     const {
       children,
