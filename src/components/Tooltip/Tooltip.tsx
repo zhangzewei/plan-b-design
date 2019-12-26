@@ -46,6 +46,7 @@ const Tooltip: React.SFC<TooltipProps> = props => {
         className,
         popupClassName,
         overlay,
+        trigger,
         ...other
     } = props;
 
@@ -65,6 +66,7 @@ const Tooltip: React.SFC<TooltipProps> = props => {
         <Trigger
             className={classNames(prefixCls, className)}
             popup={getPopupElement}
+            action={trigger}
             popupClassName={classNames(`${prefixCls}-popup`, popupClassName)}
             {...other}
         />

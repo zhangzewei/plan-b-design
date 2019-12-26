@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDom, { createPortal } from 'react-dom';
-import { CommonComponentProps } from '../../common/Interface';
+import React from "react";
+import ReactDom, {createPortal} from "react-dom";
+import {CommonComponentProps} from "../../common/Interface";
 
 interface PortalProps extends CommonComponentProps {
   getContainer?: () => HTMLElement;
@@ -8,6 +8,11 @@ interface PortalProps extends CommonComponentProps {
 
 class Portal extends React.Component<PortalProps> {
   container: HTMLElement | null = null;
+
+  constructor(props: PortalProps) {
+    super(props);
+    this.createContainer();
+  }
 
   componentDidMount() {
     this.createContainer();
@@ -20,10 +25,6 @@ class Portal extends React.Component<PortalProps> {
   createContainer = () => {
     if (this.props.getContainer) {
       this.container = this.props.getContainer();
-      // Since the update of the component is due to a change in prop or state,
-      // and the dynamic generation of the dom node here does not cause re-render,
-      // manual update is required
-      this.forceUpdate();
     }
   };
 
@@ -36,7 +37,7 @@ class Portal extends React.Component<PortalProps> {
   };
 
   render() {
-    const { children } = this.props;
+    const {children} = this.props;
 
     if (this.container) {
       if (createPortal) {
