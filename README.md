@@ -6,6 +6,7 @@
 
 1. 项目启动 `npm start`;
 2. 启动 story book `npm run storybook`;
+3. 请务必全局安装 `npm install tslint typescript -g`，为了在 percommit 的时候运行 `tslint` 需要用到;
 
 ## Todo List
 
