@@ -44,14 +44,14 @@ const ButtonBase: React.SFC<ButtonProps> = props => {
 
     const Component = component || (href ? "a" : "") || 'button';
     return createElement(Component, {
-        className: classNames(className, {
+        className: classNames({
             [prefixCls]: true,
             [`${prefixCls}-${size}`]: size,
             [`${prefixCls}-${shape}`]: shape,
             [`${prefixCls}-${variant}`]: variant,
             [`${prefixCls}-${variant}-${color}`]: color,
             [`${prefixCls}-full-width`]: fullWidth,
-        }),
+        }, className),
         ...other
     }, children);
 };

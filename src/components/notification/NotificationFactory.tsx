@@ -83,7 +83,7 @@ class NotificationFactory {
   private genMessageContent = (content: React.ReactNode, type: messageType) => {
     const iconMapping = {
       error: {
-        icon: 'info-circle-fill',
+        icon: 'close-circle-fill',
         color: 'pb-color-function-error'
       },
       warning: {
@@ -95,7 +95,7 @@ class NotificationFactory {
         color: 'pb-color-function-success'
       },
       info: {
-        icon: 'close-circle-fill',
+        icon: 'info-circle-fill',
         color: 'pb-color-brand-primary'
       }
     };
