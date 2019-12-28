@@ -10,9 +10,10 @@ export interface DialogWrapperProps extends DialogProps {
 class DialogWrapper extends Component<DialogWrapperProps> {
   render() {
     const {getContainer, children, onClose, visible} = this.props;
+    const defaultContainer = () => window.document.body;
     if (visible) {
       return (
-        <Portal getContainer={getContainer}>
+        <Portal getContainer={getContainer || defaultContainer}>
           <Dialog onClose={onClose}>{children}</Dialog>
         </Portal>
       );

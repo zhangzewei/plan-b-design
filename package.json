@@ -30,7 +30,6 @@
       "react-app",
       "plugin:prettier/recommended",
       "eslint:recommended",
-      "tslint:recommended",
       "plugin:react/recommended"
     ],
     "rules": {
@@ -86,7 +85,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.+(js|jsx)": [
+    "src/components/**/*.+(js|jsx)": [
       "eslint src/**/*.js --fix",
       "git add"
     ],

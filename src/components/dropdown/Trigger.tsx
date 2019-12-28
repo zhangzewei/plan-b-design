@@ -1,7 +1,7 @@
 import React, { Component, HTMLAttributes } from 'react';
 import Portal from '../portal/Portal';
 import Popup from './Popup';
-import { offset } from '../../common/utils';
+import { offset, contains } from '../../common/utils';
 import { CommonComponentProps } from '../../common/Interface';
 import classNames from 'classnames';
 
@@ -59,6 +59,10 @@ class Trigger extends Component<TriggerProps, {
     if (this.isCustomerToHideOrShow()) {
       this.setState({ popupVisible: nextProps.visible !== undefined ? nextProps.visible : false });
     }
+  }
+
+  componentWillUnmount() {
+    this.clearOutsideHandler();
   }
 
   getPortalContainer = () => {
@@ -183,6 +187,19 @@ class Trigger extends Component<TriggerProps, {
     this.setPopupVisible(!this.state.popupVisible, e);
   };
 
+  onClickPopupOutSide = (e: React.MouseEvent) => {
+    if (contains(this.node.current, e.target)) return;
+    if (this.state.popupVisible && contains(this.popupRef.current, e.target)) return;
+    this.setPopupVisible(false, e);
+  }
+
+  clearOutsideHandler() {
+      if (this.clickPopupOutSideFun) {
+      window.document.removeEventListener('click', (this.clickPopupOutSideFun as any));
+      this.clickPopupOutSideFun = null;
+    }	  
+  }
+
   render() {
     const {
       children,
@@ -194,12 +211,14 @@ class Trigger extends Component<TriggerProps, {
     const childProps: HTMLAttributes<HTMLElement> = {};
 
     if (this.isHoverToHideOrShow()) {
+      this.clearOutsideHandler();
       childProps.onMouseEnter = this.onMouseEnter;
       childProps.onMouseLeave = this.onMouseLeave;
     }
 
     if (this.isClickToHideOrShow()) {
       childProps.onClick = this.onClick;
+      this.clickPopupOutSideFun = window.document.addEventListener('click', this.onClickPopupOutSide as any);
     }
 
     const trigger = React.cloneElement(children, {

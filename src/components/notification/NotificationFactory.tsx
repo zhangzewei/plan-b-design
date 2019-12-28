@@ -3,6 +3,7 @@ import { get } from 'lodash';
 import Notification from './Notification';
 import { NoticeProps } from './Notice';
 import ReactDOM from 'react-dom';
+import Icon from '../icon';
 
 type placementType = 
   'right-top' |
@@ -22,7 +23,7 @@ export interface NotificationOptions {
   placement?: placementType;
 }
 
-type messageType = 'info' | 'error' | 'succes' | 'warning';
+type messageType = 'info' | 'error' | 'success' | 'warning';
 
 interface MessageOptions extends NotificationOptions {
   type: messageType;
@@ -72,11 +73,37 @@ class NotificationFactory {
     const content = get(options, 'message', '');
     const duration = get(options, 'duration', 3000);
     const type = get(options, 'type', 'info');
-    props.content = content;
+    props.content = this.genMessageContent(content, type);
     props.duration = duration;
     props.className = `pb-message pb-message-${type}`;
     props.disableIcon = true;
     return props;
+  }
+
+  private genMessageContent = (content: React.ReactNode, type: messageType) => {
+    const iconMapping = {
+      error: {
+        icon: 'info-circle-fill',
+        color: 'pb-color-function-error'
+      },
+      warning: {
+        icon: 'question-circle-fill',
+        color: 'pb-color-function-warning'
+      },
+      success: {
+        icon: 'check-circle-fill',
+        color: 'pb-color-function-success'
+      },
+      info: {
+        icon: 'close-circle-fill',
+        color: 'pb-color-brand-primary'
+      }
+    };
+
+  return <div className="message">
+      <Icon type={iconMapping[type].icon} className={iconMapping[type].color} />
+      <span className="message-content">{content}</span>
+    </div>;
   }
 
   getNotificationInstance = (

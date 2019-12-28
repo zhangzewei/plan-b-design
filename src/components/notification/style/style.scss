@@ -32,6 +32,7 @@
   background-color: $common-bg-primary;
   margin-bottom: 20px;
   padding: 8px 20px;
+  align-items: center;
 
   .notice-close-btn {
     cursor: pointer;
@@ -48,6 +49,7 @@
 
 .pb-message {
   width: 200px;
+
   &-info {
     border-radius: $GLOBAL_BORDER_RADIUS;
     border: solid 1px $brand-primary;
@@ -70,5 +72,14 @@
     border-radius: $GLOBAL_BORDER_RADIUS;
     border: solid 1px $function-warning;
     background-color: $function-warning-light;
+  }
+
+  .message {
+    display: flex;
+    align-items: center;
+
+    .message-content {
+      margin-left: 4px;
+    }
   }
 }

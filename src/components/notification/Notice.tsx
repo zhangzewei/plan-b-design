@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import Icon from '../icon';
 import { CommonComponentProps } from '../../common/Interface';
 
 export interface NoticeProps extends CommonComponentProps {
@@ -62,10 +63,9 @@ class Notice extends React.Component<NoticeProps> {
   render() {
     const { className, content, noticeId, disableIcon, style, onClose } = this.props;
     const classname = classnames('pb-notice', className);
-    const closeIcon = disableIcon ? null : (
-      <div className="notice-close-btn" onClick={() => {
-        onClose(this.key);
-      }}>X</div>);
+    const closeIcon = disableIcon ? null : (<Icon type="close" className="notice-close-btn" onClick={() => {
+      onClose(this.key);
+    }} />);
     return <div
       id={noticeId}
       className={classname}
