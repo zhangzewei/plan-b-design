@@ -15,12 +15,12 @@
 - [x] Notification -- zzw
 - [x] Dropdown -- zzw
 - [x] Message -- zzw
-- [ ] Icon -- zzw
-- [ ] Card -- zy
-- [ ] Button -- zy
-- [ ] Tooltip -- zy
-- [ ] Modal(多个弹窗出现) -- zy
-- [ ] Badge -- zzw
+- [x] Icon -- zzw
+- [x] Card -- zy
+- [x] Button -- zy
+- [ ] Tooltip -- zy & zzw
+- [x] Modal -- zzw
+- [x] Badge -- zzw
 - [ ] Input
 - [ ] Search
 - [ ] Textarea
