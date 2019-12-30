@@ -1,9 +1,10 @@
 import React, { Component, HTMLAttributes } from 'react';
+import classNames from 'classnames';
+import { cloneDeep } from 'lodash';
 import Portal from '../portal/Portal';
 import Popup from './Popup';
 import { offset, contains } from '../../common/utils';
 import { CommonComponentProps } from '../../common/Interface';
-import classNames from 'classnames';
 
 export interface TriggerProps extends CommonComponentProps {
   action: ['click', 'hover', 'custom'];
@@ -133,6 +134,7 @@ class Trigger extends Component<TriggerProps, {
     this.clearDelayTimer();
 
     if (delayS === 0 || !!delayS) {
+      event.persist(); // https://www.cnblogs.com/jimaww/p/11041344.html
       this.delayTimer = setTimeout(() => {
         this.setPopupVisible(visible, event);
       }, delayS * 1000);
