@@ -1,6 +1,6 @@
 import React from "react";
 import "./prism.css";
-import "./tooltip.scss";
+import "./styles/tooltip.css";
 import Tooltip from "../src/components/Tooltip";
 import ButtonBase from "../src/components/button";
 import Typography from "../src/components/typography/Typography";

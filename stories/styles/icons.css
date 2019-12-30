@@ -1,0 +1,23 @@
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.icon-item:hover .icon {
+  transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+  transform: scale(1.5);
+}
+
+.icon-name {
+  height: 35px;
+  text-align: center;
+  line-height: 30px;
+}
